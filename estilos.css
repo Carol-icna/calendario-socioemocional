@@ -1,0 +1,327 @@
+/* ===============================
+   RESET Y BASE
+================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: #111;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-attachment: fixed;
+  overflow-x: hidden;
+  animation: entradaSuave 2.2s ease-out;
+}
+
+/* Entrada lenta */
+@keyframes entradaSuave {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===============================
+   FONDO ESTRELLAS SUAVES
+================================ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(1px 1px at 10% 20%, white, transparent),
+    radial-gradient(1px 1px at 30% 70%, white, transparent),
+    radial-gradient(2px 2px at 70% 40%, white, transparent),
+    radial-gradient(1px 1px at 90% 60%, white, transparent);
+  background-size: 250px 250px;
+  animation: estrellasLentas 90s linear infinite;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+@keyframes estrellasLentas {
+  from { transform: translateY(0); }
+  to { transform: translateY(-1500px); }
+}
+
+/* ===============================
+   HEADER
+================================ */
+header {
+  padding: 40px 20px 15px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 2.6rem;
+  color: #111;
+  text-shadow: 0 3px 10px rgba(255,255,255,0.6);
+}
+
+.subtitulo {
+  max-width: 650px;
+  margin: 0 auto 30px;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+/* ===============================
+   MAIN
+================================ */
+main {
+  flex: 1;
+  margin: 20px auto;
+  padding: 30px;
+  max-width: 950px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 22px;
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.35);
+}
+
+/* ===============================
+   CALENDARIO
+================================ */
+.calendario {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 22px;
+}
+
+/* ===============================
+   TARJETA MES
+================================ */
+.mes {
+  border-radius: 20px;
+  padding: 16px;
+  text-decoration: none;
+  color: #111;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.25),
+    rgba(255,255,255,0.05)
+  );
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.25);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+  transition: all 0.6s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mes:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 25px rgba(255,255,255,0.25),
+    0 30px 55px rgba(0,0,0,0.55);
+}
+
+/* ===============================
+   FOTO
+================================ */
+.mes .foto {
+  flex: 1;
+  min-height: 110px;
+  max-height: 140px;
+  border-radius: 16px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.55),
+    rgba(255,255,255,0.2),
+    rgba(255,255,255,0.55)
+  );
+  box-shadow:
+    0 0 12px rgba(255,255,255,0.5),
+    inset 0 0 8px rgba(255,255,255,0.35);
+  animation: glowFoto 6s ease-in-out infinite;
+}
+
+@keyframes glowFoto {
+  0%,100% {
+    box-shadow:
+      0 0 12px rgba(255,255,255,0.5),
+      inset 0 0 8px rgba(255,255,255,0.35);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(255,255,255,0.75),
+      inset 0 0 12px rgba(255,255,255,0.45);
+  }
+}
+
+.mes .foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Texto mes */
+.mes span {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* ===============================
+   ANIMACIONES POR MES
+================================ */
+.enero:hover::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background: radial-gradient(circle, white 1px, transparent 2px);
+  background-size: 60px 60px;
+  animation: nieveLenta 6s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes nieveLenta {
+  from { transform: translateY(0); }
+  to { transform: translateY(400px); }
+}
+
+.febrero:hover { animation: latidoSuave 2.5s infinite alternate; }
+@keyframes latidoSuave {
+  from { transform: translateY(-6px) scale(1); }
+  to { transform: translateY(-6px) scale(1.08); }
+}
+
+.marzo:hover { animation: brisaSuave 6s infinite ease-in-out; }
+@keyframes brisaSuave {
+  0%,100% { transform: translateY(-6px) rotate(-1deg); }
+  50% { transform: translateY(-6px) rotate(1deg); }
+}
+
+.abril:hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    transparent,
+    rgba(255,255,255,0.15),
+    transparent
+  );
+  background-size: 100% 60px;
+  animation: lluviaLenta 4s linear infinite;
+}
+
+@keyframes lluviaLenta {
+  from { background-position: 0 0; }
+  to { background-position: 0 180px; }
+}
+
+/* ===============================
+   BOTONES
+================================ */
+.boton,
+.volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 28px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #111;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(8px);
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.35);
+}
+
+.boton:hover,
+.volver:hover {
+  transform: translateY(-4px);
+}
+
+/* ===============================
+   FOOTER
+================================ */
+footer {
+  padding: 18px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+/* ===============================
+   FONDOS POR MES
+================================ */
+body.inicio {
+  background: linear-gradient(135deg,#667eea,#764ba2,#6b8cff);
+  background-size: 400% 400%;
+  animation: fondoVivo 25s ease infinite;
+
+  display: flex;
+  justify-content: center;   /* centro horizontal */
+  align-items: center;       /* 🔥 centro vertical REAL */
+}
+
+body.inicio .bienvenida {
+  text-align: center;
+  max-width: 600px;
+  padding: 40px;
+  background: rgba(255,255,255,0.22);
+  border-radius: 22px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.35);
+}
+
+
+@keyframes fondoVivo {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body.enero { background: linear-gradient(135deg,#1e3c72,#2a5298); }
+body.febrero { background: linear-gradient(135deg,#f093fb,#f5576c); }
+body.marzo { background: linear-gradient(135deg,#56ab2f,#a8e063); }
+body.abril { background: linear-gradient(135deg,#4facfe,#00f2fe); }
+body.mayo { background: linear-gradient(135deg,#89f7fe,#66a6ff); }
+body.junio { background: linear-gradient(135deg,#a3bded,#6991c7); }
+body.julio { background: linear-gradient(135deg,#ffecd2,#fcb69f); }
+body.agosto { background: linear-gradient(135deg,#f6d365,#fda085); }
+body.septiembre { background: linear-gradient(135deg,#a8edea,#fed6e3); }
+body.octubre { background: linear-gradient(135deg,#6a11cb,#2575fc); }
+body.noviembre { background: linear-gradient(135deg,#f3e7d3,#e9a57a); }
+body.diciembre { background: linear-gradient(135deg,#ffecd2,#fcb69f,#ff9a9e); }
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  h1 { font-size: 2.2rem; }
+  main { padding: 22px; }
+}
+
+@media (max-width: 768px) {
+  .calendario { grid-template-columns: repeat(2,1fr); }
+  .mes { min-height: 165px; }
+}
+
+@media (max-width: 480px) {
+  .calendario { grid-template-columns: 1fr; }
+  h1 { font-size: 1.6rem; }
+  .mes { min-height: 150px; }
+  body::before { opacity: 0.18; }
+}
